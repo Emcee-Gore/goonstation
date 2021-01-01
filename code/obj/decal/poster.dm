@@ -551,6 +551,12 @@
 			icon = 'icons/obj/decals/posters.dmi'
 			icon_state = "wall_poster_eyetest"
 
+		poster_magician
+			name = "poster"
+			desc = "There's a moon and a few stars visible on this poster. Tiny text seems to advertise a magic show of sorts...but it is too small to read."
+			icon = 'icons/obj/decals/posters.dmi'
+			icon_state = "wall_poster_magician"
+
 		poster_rand
 			name = "poster"
 			desc = "You aren't really sure what the message is. Is it trying to advertise something?"

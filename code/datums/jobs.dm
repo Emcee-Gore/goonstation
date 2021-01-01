@@ -970,6 +970,7 @@
 	wages = PAY_TRADESMAN
 	linkcolor = "#BEEBEE" //Heh~ Bee!
 	limit = 1
+	cant_spawn_as_rev = 1 //Generally I would like them to spawn in arrivals or the bar if they are rev-heads...but got no idea how. So for now...no rev-head here.
 #ifdef MAP_OVERRIDE_MANTA
 	special_spawn_location = 0
 #elif defined(MAP_OVERRIDE_OSHAN)
@@ -981,8 +982,8 @@
 	spawn_z = 5
 #endif
 	slot_ears = /obj/item/device/radio/headset/civilian
-	slot_jump = /obj/item/clothing/under/misc/clown/magician
-	slot_suit = /obj/item/clothing/suit/bedsheet/cape/red
+	slot_jump = /obj/item/clothing/under/rank/magician
+	slot_suit = /obj/item/clothing/suit/labcoat/magician
 	slot_back = null
 	slot_glov = /obj/item/clothing/gloves/latex
 	slot_card = /obj/item/card/id/magician
@@ -998,9 +999,9 @@
 		var/loot = rand(1,3)
 		switch (loot)
 			if (1)
-				slot_head = /obj/item/clothing/head/longtophat
+				slot_head = /obj/item/clothing/head/magician_ltophat
 			else
-				slot_head = /obj/item/clothing/head/that
+				slot_head = /obj/item/clothing/head/magician_tophat
 		src.access = get_access("Magician")
 		return
 

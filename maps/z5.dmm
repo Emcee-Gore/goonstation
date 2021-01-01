@@ -5528,6 +5528,11 @@
 	},
 /turf/simulated/floor/grime,
 /area/diner/arcade)
+"sD" = (
+/obj/decal/cleanable/dirt,
+/obj/decal/cleanable/vomit,
+/turf/simulated/floor/carpet/grime,
+/area/diner/motel)
 "un" = (
 /obj/machinery/light/incandescent/netural,
 /turf/simulated/floor/grime,
@@ -5606,6 +5611,16 @@
 "DD" = (
 /turf/simulated/floor/grime,
 /area/diner/arcade)
+"DQ" = (
+/obj/decal/poster/wallsign/poster_magician{
+	pixel_x = 7;
+	pixel_y = 6
+	},
+/turf/simulated/wall/r_wall{
+	icon = 'icons/misc/evilreaverstation.dmi';
+	icon_state = "old_rwall"
+	},
+/area/diner/motel)
 "EB" = (
 /turf/simulated/floor/carpet/arcade,
 /area/diner/arcade)
@@ -5710,6 +5725,15 @@
 	},
 /turf/simulated/floor/grime,
 /area/diner/arcade)
+"PR" = (
+/obj/table/wood/round/auto,
+/obj/machinery/light/lamp/bright,
+/obj/item/playing_cards{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/turf/simulated/floor/carpet/grime,
+/area/diner/motel)
 "QQ" = (
 /obj/grille/steel,
 /obj/window/reinforced/south,
@@ -5769,6 +5793,10 @@
 /obj/machinery/vending/cola/blue,
 /turf/simulated/floor/yellow/checker,
 /area/diner/arcade)
+"Zj" = (
+/obj/storage/secure/closet/magician,
+/turf/simulated/floor/carpet/grime,
+/area/diner/motel)
 "Zk" = (
 /obj/machinery/door/airlock/gannets/toxins/alt{
 	req_access = null
@@ -60889,7 +60917,7 @@ hj
 eP
 iP
 fD
-gq
+PR
 eP
 ie
 gj
@@ -61189,9 +61217,9 @@ eP
 fN
 jl
 eP
-eP
+DQ
 fD
-eH
+Zj
 it
 an
 gj
@@ -61794,7 +61822,7 @@ fD
 jy
 eP
 kw
-fN
+sD
 jE
 eP
 kj

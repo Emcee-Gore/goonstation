@@ -577,6 +577,17 @@
 	icon_state = "chaplain"
 	item_state = "chaplain"
 
+/obj/item/clothing/under/rank/magician
+	name = "magician suit"
+	desc = "Too many nights and too much booze, but the show must go on!"
+	icon_state = "magician"
+	item_state = "magician"
+
+	april_fools
+		desc = "Only the most fancy suit for the most handsome entertainer!"
+		icon_state = "magician-alt"
+		item_state = "magician-alt"
+
 // Not jobs, but not gimmicks
 
 /obj/item/clothing/under/misc
@@ -595,11 +606,6 @@
 	item_state = "clown"
 
 	fancy
-		icon_state = "clown-fancy"
-		item_state = "clown-fancy"
-
-	magician
-		name = "Magician's suit"
 		icon_state = "clown-fancy"
 		item_state = "clown-fancy"
 

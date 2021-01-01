@@ -640,6 +640,17 @@
 	/obj/item/clothing/suit/flockcultist,\
 	/obj/item/storage/box/holywaterkit)
 
+/obj/storage/secure/closet/magician
+	icon_state = "magician"
+	icon_closed = "magician"
+	icon_opened = "secure_magician-open"
+	name = "\improper Magician's shabby locker"
+	req_access = list(access_magician)
+	spawn_contents = list(/obj/item/storage/sparkler_box,
+	/obj/item/clothing/suit/jacket/sparkly,
+	/obj/item/dice/magic8ball,
+	)
+
 /* =================== */
 /* ----- Fridges ----- */
 /* =================== */

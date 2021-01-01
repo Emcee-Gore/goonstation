@@ -546,7 +546,7 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 	if (widescreen_checked)
 		if (splitter_value < 67.0)
 			src.set_widescreen(1)
-	
+
 	src.screenSizeHelper.registerOnLoadCallback(CALLBACK(src, .proc/checkHiRes))
 
 	var/is_vert_splitter = winget( src, "menu.horiz_split", "is-checked" ) != "true"
