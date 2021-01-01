@@ -334,6 +334,8 @@
 			return list(access_bar, access_kitchen)
 		if("Clown", "Boxer", "Barber", "Mime")
 			return list(access_maint_tunnels)
+		if("Magician")
+			return list(access_magician)
 		if("Assistant", "Staff Assistant", "Technical Assistant", "Radio Show Host")
 			return list(access_maint_tunnels, access_tech_storage)
 		if("Mailman")

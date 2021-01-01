@@ -102,3 +102,6 @@
 
 //rancher job
 #define access_ranch 83
+
+//magician job
+#define access_magician 84

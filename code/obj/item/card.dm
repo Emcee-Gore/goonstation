@@ -123,6 +123,10 @@ GAUNTLET CARDS
 	icon_state = "id_clown"
 	desc = "Wait, this isn't even an ID Card. It's a piece of a Chips Ahoy wrapper with crayon scribbles on it. What the fuck?"
 
+/obj/item/card/id/magician
+	icon_state = "id_magician"
+	desc = "A most honorable and fancy entertainer decided to spice up this identification card with a hint of night-sky paint! Wait...is it cardboard?!"
+
 /obj/item/card/id/gold
 	name = "identification card"
 	icon_state = "gold"

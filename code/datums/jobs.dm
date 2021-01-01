@@ -965,6 +965,45 @@
 		if (prob(50))
 			M.bioHolder.AddEffect("accent_comic", magical=1)
 
+/datum/job/civilian/magician
+	name = "Magician"
+	wages = PAY_TRADESMAN
+	linkcolor = "#BEEBEE" //Heh~ Bee!
+	limit = 1
+#ifdef MAP_OVERRIDE_MANTA
+	special_spawn_location = 0
+#elif defined(MAP_OVERRIDE_OSHAN)
+	special_spawn_location = 0
+#else
+	special_spawn_location = 1 //Space-Diner Room 2! Cozy!
+	spawn_x = 185
+	spawn_y = 154
+	spawn_z = 5
+#endif
+	slot_ears = /obj/item/device/radio/headset/civilian
+	slot_jump = /obj/item/clothing/under/misc/clown/magician
+	slot_suit = /obj/item/clothing/suit/bedsheet/cape/red
+	slot_back = null
+	slot_glov = /obj/item/clothing/gloves/latex
+	slot_card = /obj/item/card/id/magician
+	slot_foot = /obj/item/clothing/shoes/black
+	slot_belt = /obj/item/storage/fanny
+	slot_poc1 = /obj/item/device/pda2
+	slot_poc2 = null
+	items_in_belt = list(/obj/item/device/light/sparkler)
+	change_name_on_spawn = 1
+
+	New()
+		..()
+		var/loot = rand(1,3)
+		switch (loot)
+			if (1)
+				slot_head = /obj/item/clothing/head/longtophat
+			else
+				slot_head = /obj/item/clothing/head/that
+		src.access = get_access("Magician")
+		return
+
 // AI and Cyborgs
 
 /datum/job/civilian/AI

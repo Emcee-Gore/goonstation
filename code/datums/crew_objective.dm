@@ -689,6 +689,21 @@ ABSTRACT_TYPE(/datum/objective/crew/staffassistant)
 					return 1
 			return 0
 
+ABSTRACT_TYPE(/datum/objective/crew/magician)
+/datum/objective/crew/magician
+	magic
+		explanation_text = "Make the crew <i>bee</i>lieve magic is real. <i>This objective is not tracked and will automatically succeed, so just have fun with it!</i>"
+		check_completion()
+			return 1
+	show
+		explanation_text = "Organize an entertainment show in the bar! <i>This objective is not tracked and will automatically succeed, so just have fun with it!</i>"
+		check_completion()
+			return 1
+	shop
+		explanation_text = "Only the most talented Magicians are able to share their wisdom with the next generation! Open up a shop of magical curiosities! <i>This objective is not tracked and will automatically succeed, so just have fun with it!</i>"
+		check_completion()
+			return 1
+
 //Keeping this around just in case some idiot gets a medal in an admin gimmick or something
 ABSTRACT_TYPE(/datum/objective/crew/technicalassistant)
 /datum/objective/crew/technicalassistant

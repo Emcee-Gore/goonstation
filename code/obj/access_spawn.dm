@@ -105,6 +105,11 @@
 	req_access = list(access_maint_tunnels)
 	color = MAINTENANCE
 
+/obj/access_spawn/magician
+	name = "magician access spawn"
+	req_access = list(access_magician)
+	color = SPECIAL
+
 /obj/access_spawn/emergency_storage
 	name = "emergency storage access spawn"
 	req_access = list(access_emergency_storage)

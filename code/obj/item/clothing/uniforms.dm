@@ -598,6 +598,11 @@
 		icon_state = "clown-fancy"
 		item_state = "clown-fancy"
 
+	magician
+		name = "Magician's suit"
+		icon_state = "clown-fancy"
+		item_state = "clown-fancy"
+
 	dress
 		name = "clown dress"
 		icon_state = "clown-dress"
