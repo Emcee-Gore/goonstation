@@ -488,18 +488,20 @@
 	item_state = "DANlabcoat"
 	coat_style = "DANlabcoat"
 
-/obj/item/clothing/suit/labcoat/magician
+/obj/item/clothing/suit/magician
+	setupProperties()
+		..()
+		setProperty("coldprot", 10)
+		setProperty("heatprot", 10)
 	name = "magician's cape"
 	desc = "A fancy cape and jacket to keep the cold of space outside and the warmth of magic inside your heart!"
 	icon_state = "magician_cape"
 	item_state = "magician_cape"
-	coat_style = "magician_cape"
 
 	april_fools
 		desc = "One has to wonder if the shiny coat of paint helps to keep you warm or not."
 		icon_state = "magician_cape-alt"
 		item_state = "magician_cape-alt"
-		coat_style = "magician_cape-alt"
 
 /obj/item/clothing/suit/straight_jacket
 	name = "straight jacket"

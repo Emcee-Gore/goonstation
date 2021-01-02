@@ -578,7 +578,7 @@
 	item_state = "chaplain"
 
 /obj/item/clothing/under/rank/magician
-	name = "magician suit"
+	name = "magician's suit"
 	desc = "Too many nights and too much booze, but the show must go on!"
 	icon_state = "magician"
 	item_state = "magician"

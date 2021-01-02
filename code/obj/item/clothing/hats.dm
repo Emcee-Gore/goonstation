@@ -452,7 +452,7 @@
 		item_state = "magician_ltophat-alt"
 
 /obj/item/clothing/head/magician_tophat
-	name = "Fancy tophat"
+	name = "magician's tophat"
 	desc = "A magically looking hat."
 	wear_image_icon = 'icons/mob/head.dmi'
 	icon_state = "magician_tophat"

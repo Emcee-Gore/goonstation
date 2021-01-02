@@ -983,7 +983,7 @@
 #endif
 	slot_ears = /obj/item/device/radio/headset/civilian
 	slot_jump = /obj/item/clothing/under/rank/magician
-	slot_suit = /obj/item/clothing/suit/labcoat/magician
+	slot_suit = /obj/item/clothing/suit/magician
 	slot_back = null
 	slot_glov = /obj/item/clothing/gloves/latex
 	slot_card = /obj/item/card/id/magician

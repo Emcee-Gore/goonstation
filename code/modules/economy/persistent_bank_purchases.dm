@@ -294,6 +294,12 @@ var/global/list/persistent_bank_purchaseables =	list(\
 							H.wear_suit:coat_style = "[H.wear_suit:coat_style]-alt"
 						succ = 1
 
+				if (H.head && istype(H.head, /obj/item/clothing/head))
+					if (ispath(text2path("[H.head.type]/april_fools")))
+						H.head.icon_state = "[H.head.icon_state]-alt"
+						H.head.item_state = "[H.head.item_state]-alt"
+						succ = 1
+
 			return succ
 
 	altclown

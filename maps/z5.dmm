@@ -5725,15 +5725,6 @@
 	},
 /turf/simulated/floor/grime,
 /area/diner/arcade)
-"PR" = (
-/obj/table/wood/round/auto,
-/obj/machinery/light/lamp/bright,
-/obj/item/playing_cards{
-	pixel_x = 8;
-	pixel_y = 8
-	},
-/turf/simulated/floor/carpet/grime,
-/area/diner/motel)
 "QQ" = (
 /obj/grille/steel,
 /obj/window/reinforced/south,
@@ -60917,7 +60908,7 @@ hj
 eP
 iP
 fD
-PR
+gq
 eP
 ie
 gj
