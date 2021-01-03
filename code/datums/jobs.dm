@@ -989,8 +989,8 @@
 	slot_card = /obj/item/card/id/magician
 	slot_foot = /obj/item/clothing/shoes/black
 	slot_belt = /obj/item/storage/fanny
-	slot_poc1 = /obj/item/device/pda2
-	slot_poc2 = /obj/item/magician_tools/wand
+	slot_poc1 = /obj/item/magician_tools/wand
+	slot_poc2 = /obj/item/device/pda2
 	items_in_belt = list(/obj/item/device/light/sparkler)
 	change_name_on_spawn = 1
 

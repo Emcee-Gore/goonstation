@@ -1262,6 +1262,49 @@
 				afterUse(user)
 			return
 
+	wandspark
+		cooldown = 0.6
+		moveDelay = 5
+		moveDelayDuration = 2
+
+		damageMult = 0.8
+
+
+		image = "magicspark"
+		name = "Frizzle"
+		desc = "Cast a tiny amount of the energy of this wand's leaking battery onto nearby test-subjects."
+
+		onAdd()
+			if(master)
+				staminaCost = master.stamina_cost * 0.4 //Inherits from the item.
+				overrideStaminaDamage = master.stamina_damage * 0.8
+			return
+
+		pixelaction(atom/target, params, mob/user, reach)
+			if(!isturf(target.loc) && !isturf(target)) return
+			if(!usable(user)) return
+			if(params["left"] && master && get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+				preUse(user)
+				var/direction = get_dir_pixel(user, target, params)
+				var/turf/turf = get_step(master, direction)
+
+
+				var/obj/itemspecialeffect/conc/C = unpool(/obj/itemspecialeffect/conc)
+				C.setup(turf)
+				for (var/obj/O in turf.contents)
+					if (istype(O, /obj/blob))
+						boutput(user, "<span class='alert'><b>You try to affect the Blob by magic sparks, but [O] is too wet for it to take!</b></span>")
+						return
+					if (istype(O, /obj/spacevine))
+						var/obj/spacevine/K = O
+						if (K.current_stage >= 2)	//if it's med density
+							boutput(user, "<span class='alert'><b>You try to channel magic sparks onto the plant-life, but [O] is too dense for it to take!</b></span>")
+							return
+
+				magicspark(turf,0, power=2, exclude_center = 0)
+				afterUse(user)
+			return
+
 ///////////////////////////////////
 	spark/ntso
 		cooldown = 0
