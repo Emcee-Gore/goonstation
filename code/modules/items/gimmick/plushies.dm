@@ -179,6 +179,17 @@
 	name = "bunny plush toy"
 	icon_state = "bunny"
 
+/obj/item/toy/plush/small/bunny/wet
+	name = "soaking wet bunny plush toy"
+	icon_state = "bunny"
+	desc = "This magician's funny stage-prop has seen a lot. Poor bunny."
+
+	throw_impact(atom/A, datum/thrown_thing/thr)
+		var/turf/T = get_turf(A)
+		src.visible_message("<span class='alert'>[src] is thrown against the floor and oozes water!</span>")
+		playsound(src.loc, "sound/impact_sounds/Slimy_Hit_1.ogg", 100, 1)
+		make_cleanable(/obj/decal/cleanable/water,T)
+
 /obj/item/toy/plush/small/bunny/mask
 	name = "gas mask bunny plush toy"
 	icon_state = "bunny_mask"

@@ -989,9 +989,9 @@
 	slot_card = /obj/item/card/id/magician
 	slot_foot = /obj/item/clothing/shoes/black
 	slot_belt = /obj/item/storage/fanny
-	slot_poc1 = /obj/item/magician_tools/wand
-	slot_poc2 = /obj/item/device/pda2
-	items_in_belt = list(/obj/item/device/light/sparkler)
+	slot_poc1 = /obj/item/device/pda2
+	slot_poc2 = null
+	items_in_belt = list(/obj/item/device/light/sparkler, /obj/item/magician_tools/wand)
 	change_name_on_spawn = 1
 
 	New()
@@ -999,7 +999,7 @@
 		var/loot = rand(1,3)
 		switch (loot)
 			if (1)
-				slot_head = /obj/item/clothing/head/magician_ltophat
+				slot_head = /obj/item/clothing/head/magician_tophat/long
 			else
 				slot_head = /obj/item/clothing/head/magician_tophat
 		src.access = get_access("Magician")

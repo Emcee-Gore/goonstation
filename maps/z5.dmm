@@ -5565,10 +5565,9 @@
 	dir = 4;
 	icon_state = "showerhead"
 	},
-/obj/item/toy/plush/small/bunny{
-	name = "soaking wet bunny plush toy";
-	pixel_x = -4;
-	pixel_y = 3
+/obj/item/toy/plush/small/bunny/wet{
+	pixel_x = -6;
+	pixel_y = 5
 	},
 /turf/simulated/floor/sanitary,
 /area/diner/motel)
