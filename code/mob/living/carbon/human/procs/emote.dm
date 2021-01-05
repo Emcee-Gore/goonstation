@@ -577,6 +577,10 @@
 							animate(thing, transform = turn(matrix(), 120), time = 0.7, loop = 3)
 							animate(transform = turn(matrix(), 240), time = 0.7)
 							animate(transform = null, time = 0.7)
+							for (var/obj/item/C as() in src.get_equipped_items())
+								if (istype(C, /obj/item/clothing/head/magician_tophat) != null)
+									var/obj/item/clothing/head/magician_tophat/magic = locate() in src.loc
+									magic.shit_goes_everywhere_hat() //(C)
 						else
 							message = "<B>[src]</B> wiggles [his_or_her(src)] fingers a bit.[prob(10) ? " Weird." : null]"
 							maptext_out = "<I>wiggles [his_or_her(src)] fingers a bit.</I>"
