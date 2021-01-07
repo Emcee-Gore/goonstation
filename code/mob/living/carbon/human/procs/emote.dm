@@ -577,10 +577,38 @@
 							animate(thing, transform = turn(matrix(), 120), time = 0.7, loop = 3)
 							animate(transform = turn(matrix(), 240), time = 0.7)
 							animate(transform = null, time = 0.7)
-							for (var/obj/item/C as() in src.get_equipped_items())
-								if (istype(C, /obj/item/clothing/head/magician_tophat) != null)
-									var/obj/item/clothing/head/magician_tophat/magic = locate() in src.loc
-									magic.shit_goes_everywhere_hat() //(C)
+							//for (var/obj/item/C as() in src.get_equipped_items())
+							// for (var/obj/item/C as() in src.get_equipped_items())
+							// 	if (istype(C, /obj/item/clothing/head/magician_tophat) != null)
+							//for (var/obj/item/C as() in src.get_equipped_items())
+							if (istype(thing, /obj/item/clothing/head/magician_tophat))
+								//src.visible_message("<span class='alert'>Tophat gefunden!</span>")
+								var/obj/item/clothing/head/magician_tophat/magic = locate() in src.equipped()
+								//src.visible_message("<span class='alert'>Magic gefunden!</span>")
+								var/mob/caster = src
+								magic.shit_hat(caster)
+								//if (thing == magic)
+									// if (!magic.contents.len)
+								//if (magic.contents.len == 0)
+									// 	src.visible_message("<span class='alert'>A bunch of daunting air bursts out of the [magic]!</span>")
+
+									// else
+								//else
+
+
+										//magic.shit_hat() //(C)
+							// for (var/obj/item/C as() in src.get_equipped_items())
+							// 	if (istype(C, /obj/item/clothing/head/magician_tophat) != null)
+							// 		var/obj/item/clothing/head/magician_tophat/magic = locate() in src.loc
+							// 		if (!magic.contents.len)
+							// 			src.visible_message("<span class='alert'>A bunch of daunting air bursts out of the [magic]!</span>")
+							// 		else
+							// 			src.visible_message("<span class='alert'>Everything inside [magic] comes out flying!</span>")
+							// 			magic.shit_hat(C) //(C)
+
+
+
+
 						else
 							message = "<B>[src]</B> wiggles [his_or_her(src)] fingers a bit.[prob(10) ? " Weird." : null]"
 							maptext_out = "<I>wiggles [his_or_her(src)] fingers a bit.</I>"

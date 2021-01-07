@@ -13,11 +13,81 @@
 	var/max_stuff = 5 // can't hold more than this many stuff
 	var/current_stuff = 0 // w_class is added together here, not allowed to add something that would put this > max_stuff
 
-	// proc/shit_goes_everywhere_hat()
- 	// 	src.visible_message("<span class='alert'>Everything inside [src] comes out flying!</span>")
- 	// 	return
-	proc/shit_goes_everywhere_hat()
-	 	return
+	// var/list/ordered_contents = list()
+	var/list/throw_targets = list()
+	var/throw_dist = 3
+
+	proc/shit_hat(var/mob/user) //Sehr viel Hass und Liebe!
+		// user.visible_message("<span class='alert'>Shit hat!</span>")
+		// src.loc.visible_message("Shit!")
+		// boutput(user, "<span class='alert'>Hat!</span>")
+		if (!src.contents.len)
+			user.visible_message("<span class='alert'>A bunch of daunting air bursts out of the [src]!</span>")
+			return
+		else
+			user.visible_message("<span class='alert'>Everything inside [src] comes out flying!</span>")
+		while (src.contents.len)
+			throw_targets += get_offset_target_turf(src.loc, rand(throw_dist)-rand(throw_dist), rand(throw_dist)-rand(throw_dist))
+		//	var/atom/movable/A = pick(src.contents)
+			var/obj/item/A = pick(src.contents)
+			if (A)
+				A.set_loc(get_turf(src))
+				A.throw_at(pick(throw_targets), 5, 1)
+				throw_targets = null
+
+
+
+	// 	for (var/i = 1, i <= ordered_contents.len, i++)
+	// 		throw_targets += get_offset_target_turf(src.loc, rand(throw_dist)-rand(throw_dist), rand(throw_dist)-rand(throw_dist))
+
+	// 	while (ordered_contents.len > 0)
+	// 		var/obj/item/F = ordered_contents[1]
+	// 		src.remove_contents(F)
+	// 		F.set_loc(get_turf(src))
+	// 		F.throw_at(pick(throw_targets), 5, 1)
+	// 	return
+
+	// proc/add_contents(var/obj/item/W)
+	// 	ordered_contents += W
+	// 	tooltip_rebuild = 1
+
+	// proc/remove_contents(var/obj/item/W)
+	// 	ordered_contents -= W
+	// 	tooltip_rebuild = 1
+
+
+
+	// proc/remove_random_item(var/mob/user)
+	// 	if (!src.contents.len)
+	// 		return
+	// 	var/atom/movable/A = pick(src.contents)
+	// 	if (A)
+	// 		if (user)
+	// 			user.visible_message("\An [A] falls out of [user]'s [src.name]!",
+	// 			"<span class='alert'>\An [A] falls out of your [src.name]!</span>")
+	// 		else
+	// 			src.loc.visible_message("\An [A] falls out of [src]!")
+	// 		A.set_loc(get_turf(src))
+
+	// // 	for (var/i = 1, i <= ordered_contents.len, i++)
+	// 		throw_targets += get_offset_target_turf(src.loc, rand(throw_dist)-rand(throw_dist), rand(throw_dist)-rand(throw_dist))
+
+	// 	while (ordered_contents.len > 0)
+	// 		var/obj/item/F = ordered_contents[1]
+	// 		src.remove_contents(F)
+	// 		F.set_loc(get_turf(src))
+	// 		F.throw_at(pick(throw_targets), 5, 1)
+	// 	return
+
+	// proc/add_contents(var/obj/item/W)
+	// 	ordered_contents += W
+	// 	tooltip_rebuild = 1
+
+	// proc/remove_contents(var/obj/item/W)
+	// 	ordered_contents -= W
+	// 	tooltip_rebuild = 1
+
+
 
 	get_desc(dist)
 		..()
@@ -69,6 +139,7 @@
 			return ..()
 		if (!src.contents.len)
 			boutput(user, "<span class='alert'>\The [src] is empty!</span>")
+			//. += "It's [get_fullness(current_stuff / max_stuff * 100)]."
 			return
 		else
 			var/obj/item/I = pick(src.contents)
@@ -103,26 +174,48 @@
 					flavor = "nimbly"
 				else
 					flavor = "brokenly" //This better be not happening! D:
-			var/hex = rand(1,8)
+			var/hex = rand(1,5)
 			switch (hex)
 				if (1)
-					hex = "<font color='#FF0000'>"
+					hex = "<font color='#27fdf5'>"
 				if (2)
-					hex = "<font color='#FF9900'>"
+					hex = "<font color='#a8f6f8'>"
 				if (3)
-					hex = "<font color='#FFff00'>"
+					hex = "<font color='#d7fffe'>"
 				if (4)
-					hex = "<font color='#00FF00'>"
+					hex = "<font color='#f98dc9'>"
 				if (5)
-					hex = "<font color='#0000FF'>"
-				if (6)
-					hex = "<font color='#FF00FF'>"
-				if (7)
-					hex =	"<font color='#660066'>"
-				if (8)
-					hex = "<font color='#000000'>"
+					hex = "<font color='#f765b8'>"
+				// if (1)
+				// 	hex = "<font color='#FF0000'>"
+				// if (2)
+				// 	hex = "<font color='#FF9900'>"
+				// if (3)
+				// 	hex = "<font color='#FFff00'>"
+				// if (4)
+				// 	hex = "<font color='#00FF00'>"
+				// if (5)
+				// 	hex = "<font color='#0000FF'>"
+				// if (6)
+				// 	hex = "<font color='#FF00FF'>"
+				// if (7)
+				// 	hex =	"<font color='#d73715'>"
+				// if (8)
+				// 	hex = "<font color='#8d1422'>"
+				// if (9)
+				// 	hex = "<font color = '#8c139a'>"
+				// if (10)
+				// 	hex = "<font color = '#411068'>"
 
-			boutput(user, "You rummage around [hex]<i>[flavor]</i></font> in [src] and pull out [I].")
+			//boutput(user, "You rummage around [hex]<i>[flavor]</i></font> in [src] and pull out [I].")
+			var/output = rand(1,3)
+			switch (output)
+				if (1)
+					boutput(user, "Yo[hex]u</font> rum[hex]m</font>age ar[hex]ou</font>n[hex]d</font> [hex]<b>[flavor]</b></font> i[hex]n</font> [src] and p[hex]ul</font>l ou[hex]t</font> [I].")
+				if (2)
+					boutput(user, "Y[hex]ou</font> r[hex]u</font>mm[hex]ag</font>e a[hex]rou</font>nd [hex]<b>[flavor]</b></font> i[hex]n</font> [src] and p[hex]ul</font>l [hex]o</font>ut [hex][I].</font>")
+				if (3)
+					boutput(user, "[hex]Y</font>o[hex]u</font> r[hex]u</font>m[hex]mage</font> ar[hex]o</font>u[hex]nd</font> [hex]<b>[flavor]</b></font> in [hex][src]</font> an[hex]d p</font>ul[hex]l</font> o[hex]u</font>t [I].")
 			user.put_in_hand_or_drop(I)
 		if (src.contents.len && ishuman(src.loc)) // person be wearin this
 			var/mob/living/carbon/human/H = src.loc
