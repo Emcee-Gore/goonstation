@@ -985,7 +985,7 @@
 	slot_jump = /obj/item/clothing/under/rank/magician
 	slot_suit = /obj/item/clothing/suit/magician
 	slot_back = null
-	slot_glov = /obj/item/clothing/gloves/latex
+	slot_glov = /obj/item/clothing/gloves/latex/magician
 	slot_card = /obj/item/card/id/magician
 	slot_foot = /obj/item/clothing/shoes/black
 	slot_belt = /obj/item/storage/fanny

@@ -583,10 +583,9 @@
 							//for (var/obj/item/C as() in src.get_equipped_items())
 							if (istype(thing, /obj/item/clothing/head/magician_tophat))
 								//src.visible_message("<span class='alert'>Tophat gefunden!</span>")
-								var/obj/item/clothing/head/magician_tophat/magic = locate() in src.equipped()
+								var/obj/item/clothing/head/magician_tophat/magic = thing
 								//src.visible_message("<span class='alert'>Magic gefunden!</span>")
-								var/mob/caster = src
-								magic.shit_hat(caster)
+								magic.shit_hat(src)
 								//if (thing == magic)
 									// if (!magic.contents.len)
 								//if (magic.contents.len == 0)

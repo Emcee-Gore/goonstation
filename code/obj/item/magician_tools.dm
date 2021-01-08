@@ -4,6 +4,11 @@
 	wear_image_icon = 'icons/mob/head.dmi'
 	icon_state = "magician_tophat"
 	item_state = "magician_tophat"
+	setupProperties()
+		..()
+		setProperty("meleeprot_head", 1)
+		setProperty("coldprot", 10)
+		setProperty("heatprot", 5)
 
 	april_fools
 		desc = "A shinier version of a magically looking hat."
@@ -18,11 +23,9 @@
 	var/throw_dist = 3
 
 	proc/shit_hat(var/mob/user) //Sehr viel Hass und Liebe!
-		// user.visible_message("<span class='alert'>Shit hat!</span>")
-		// src.loc.visible_message("Shit!")
-		// boutput(user, "<span class='alert'>Hat!</span>")
 		if (!src.contents.len)
 			user.visible_message("<span class='alert'>A bunch of daunting air bursts out of the [src]!</span>")
+			src.calc_w_class(user)
 			return
 		else
 			user.visible_message("<span class='alert'>Everything inside [src] comes out flying!</span>")
@@ -34,60 +37,7 @@
 				A.set_loc(get_turf(src))
 				A.throw_at(pick(throw_targets), 5, 1)
 				throw_targets = null
-
-
-
-	// 	for (var/i = 1, i <= ordered_contents.len, i++)
-	// 		throw_targets += get_offset_target_turf(src.loc, rand(throw_dist)-rand(throw_dist), rand(throw_dist)-rand(throw_dist))
-
-	// 	while (ordered_contents.len > 0)
-	// 		var/obj/item/F = ordered_contents[1]
-	// 		src.remove_contents(F)
-	// 		F.set_loc(get_turf(src))
-	// 		F.throw_at(pick(throw_targets), 5, 1)
-	// 	return
-
-	// proc/add_contents(var/obj/item/W)
-	// 	ordered_contents += W
-	// 	tooltip_rebuild = 1
-
-	// proc/remove_contents(var/obj/item/W)
-	// 	ordered_contents -= W
-	// 	tooltip_rebuild = 1
-
-
-
-	// proc/remove_random_item(var/mob/user)
-	// 	if (!src.contents.len)
-	// 		return
-	// 	var/atom/movable/A = pick(src.contents)
-	// 	if (A)
-	// 		if (user)
-	// 			user.visible_message("\An [A] falls out of [user]'s [src.name]!",
-	// 			"<span class='alert'>\An [A] falls out of your [src.name]!</span>")
-	// 		else
-	// 			src.loc.visible_message("\An [A] falls out of [src]!")
-	// 		A.set_loc(get_turf(src))
-
-	// // 	for (var/i = 1, i <= ordered_contents.len, i++)
-	// 		throw_targets += get_offset_target_turf(src.loc, rand(throw_dist)-rand(throw_dist), rand(throw_dist)-rand(throw_dist))
-
-	// 	while (ordered_contents.len > 0)
-	// 		var/obj/item/F = ordered_contents[1]
-	// 		src.remove_contents(F)
-	// 		F.set_loc(get_turf(src))
-	// 		F.throw_at(pick(throw_targets), 5, 1)
-	// 	return
-
-	// proc/add_contents(var/obj/item/W)
-	// 	ordered_contents += W
-	// 	tooltip_rebuild = 1
-
-	// proc/remove_contents(var/obj/item/W)
-	// 	ordered_contents -= W
-	// 	tooltip_rebuild = 1
-
-
+		src.calc_w_class(user)
 
 	get_desc(dist)
 		..()
@@ -273,45 +223,17 @@
 				if (!T.density)
 					return//usr.visible_message("<span class='alert'>[usr] dumps the contents of [src] onto [T]!</span>")
 
-	// proc/shit_goes_everywhere_hat()
-	// 	src.visible_message("<span class='alert'>Everything inside [src] comes out flying!</span>")
-	// 	for (var/i = 1, i <= ordered_contents.len, i++)
-	// 		throw_targets += get_offset_target_turf(src.loc, rand(throw_dist)-rand(throw_dist), rand(throw_dist)-rand(throw_dist))
-
-	// 	while (ordered_contents.len > 0)
-	// 		var/obj/item/F = ordered_contents[1]
-	// 		src.remove_contents(F)
-	// 		src.update_icon()
-	// 		F.set_loc(get_turf(src))
-	// 		F.throw_at(pick(throw_targets), 5, 1)
-
-
-		// 	attack(mob/M as mob, mob/user as mob)
-		// if(user.a_intent == INTENT_HARM)
-		// 	if(M == user)
-		// 		boutput(user, "<span class='alert'><B>You smash [src] over your own head!</b></span>")
-		// 	else
-		// 		M.visible_message("<span class='alert'><B>[user] smashes [src] over [M]'s head!</B></span>")
-		// 		logTheThing("combat", user, M, "smashes [src] over [constructTarget(M,"combat")]'s head! ")
-		// 	if(ordered_contents.len != 0)
-		// 		src.shit_goes_everywhere()
-		// 	unique_attack_garbage_fuck(M, user)
-		// else
-		// 	M.visible_message("<span class='alert'>[user] taps [M] over the head with [src].</span>")
-		// 	unique_tap_garbage_fluck(M,user)
-		// 	logTheThing("combat", user, M, "taps [constructTarget(M,"combat")] over the head with [src].")
-
-
-//1. when *twirl emote then squatter all items around
-//2. Flavor-text when pulling out of the hat.
-//3. Reducing max items inside hat.
-
 /obj/item/clothing/head/magician_tophat/long
 	name = "magician's long tophat"
 	desc = "When you look at this hat you can only think of how many mice you could fit in it."
 	wear_image_icon = 'icons/mob/bighat.dmi'
 	icon_state = "magician_ltophat"
 	item_state = "magician_ltophat"
+	setupProperties()
+		..()
+		setProperty("meleeprot_head", 1)
+		setProperty("coldprot", 10)
+		setProperty("heatprot", 5)
 
 	april_fools
 		desc = "When you look at this hat you can only think of how many cockroaches you could fit in it."
@@ -319,6 +241,127 @@
 		item_state = "magician_ltophat-alt"
 
 // Trashbag-like-magician-hat above!
+
+/obj/item/clothing/under/rank/magician
+	icon = 'icons/obj/clothing/uniforms/item_js_rank.dmi'
+	wear_image_icon = 'icons/mob/jumpsuits/worn_js_rank.dmi'
+	inhand_image_icon = 'icons/mob/inhand/jumpsuit/hand_js_rank.dmi'
+	name = "magician's suit"
+	desc = "Too many nights and too much booze, but the show must go on!"
+	icon_state = "magician"
+	item_state = "magician"
+	setupProperties()
+		..()
+		setProperty("meleeprot", 1)
+		setProperty("coldprot", 5)
+		setProperty("heatprot", 5)
+
+	april_fools
+		desc = "Only the most fancy suit for the most handsome entertainer!"
+		icon_state = "magician-alt"
+		item_state = "magician-alt"
+
+/obj/item/clothing/suit/magician
+	icon = 'icons/obj/clothing/overcoats/item_suit.dmi'
+	inhand_image_icon = 'icons/mob/inhand/overcoat/hand_suit.dmi'
+	wear_image_icon = 'icons/mob/overcoats/worn_suit.dmi'
+	setupProperties()
+		..()
+		setProperty("meleeprot", 2)
+		setProperty("coldprot", 10)
+		setProperty("heatprot", 10)
+	name = "magician's cape"
+	desc = "A fancy cape and jacket to keep the cold of space kinda outside and the warmth of magic definitely inside your heart!"
+	icon_state = "magician_cape"
+	item_state = "magician_cape"
+
+	april_fools
+		desc = "One has to wonder if the shiny coat of paint helps to keep you warm or not."
+		icon_state = "magician_cape-alt"
+		item_state = "magician_cape-alt"
+
+// Magician's suit and cape above! Wooh!
+//
+//
+//
+//
+
+/obj/item/clothing/head/magician_tophat/syndicate
+	wear_image_icon = 'icons/mob/bighat.dmi'
+	icon_state = "magician_ltophat"
+	item_state = "magician_ltophat"
+	max_stuff = 20
+	desc = "Not only is this large tophat one of the most fancy gizmos the Syndicate has been able to produce but one has to wonder how they managed to cram a tiny storage dimension into this most magical piece of headwear!"
+	c_flags = SPACEWEAR
+	name = "shiny magician's long tophat"
+	mat_changename = 0
+	mat_changedesc = 0
+	mat_appearances_to_ignore = list("gold")
+	setupProperties()
+		..()
+		src.setMaterial(getMaterial("gold"))
+		setProperty("meleeprot_head", 3)
+		setProperty("rangedprot", 1)
+		setProperty("coldprot", 15)
+		setProperty("heatprot", 10)
+
+/obj/item/clothing/suit/magician/syndicate
+	protective_temperature = 4000
+	icon_state = "magician_cape"
+	item_state = "magician_cape"
+	desc = "Tailored by the most advanced robots of the Syndicate - this cape and jacket will not just protect you from the demoralizing coldness of space but also from the heat of NanoTrasen security officers!"
+	c_flags = SPACEWEAR
+	name = "shiny magician's cape"
+	mat_changename = 0
+	mat_changedesc = 0
+	mat_appearances_to_ignore = list("gold")
+	setupProperties()
+		..()
+		src.setMaterial(getMaterial("gold"))
+		setProperty("meleeprot", 5)
+		setProperty("coldprot", 30)
+		setProperty("heatprot", 30)
+
+/obj/item/clothing/under/rank/magician/syndicate
+	icon_state = "magician"
+	item_state = "magician"
+	desc = "This neat suit is quite bedazzling! The clothing tag is decorated with the most finest shapes and on closer inspection a red 'S' can be noticed, hinting to the origins of this handsome piece of clothing."
+	name = "shiny magician's suit"
+	mat_changename = 0
+	mat_changedesc = 0
+	mat_appearances_to_ignore = list("gold")
+	setupProperties()
+		..()
+		src.setMaterial(getMaterial("gold"))
+		setProperty("meleeprot", 3)
+		setProperty("coldprot", 25)
+		setProperty("heatprot", 20)
+
+/obj/item/clothing/gloves/yellow/syndicate_magician
+	desc = "These gloves have been prepared by Syndicate engineers to ensure every trusty magician is able to have a shockingly-safe time during deployment!"
+	name = "magician's shockingly-safe gloves"
+	material_prints = "insulative fibers and a hint of white paint"
+	icon_state = "latex"
+	item_state = "lgloves"
+	can_be_charged = 0
+
+/obj/item/storage/box/syndicate_magician
+	name = "magician's special suit-set"
+	icon = 'icons/obj/items/storage.dmi'
+	icon_state = "magician"
+	inhand_image_icon = 'icons/mob/inhand/hand_storage.dmi'
+	item_state = "box"
+	desc = "Inside this tiny box awaits a whole lot of magical fun! A set of clothes of great magnitude await the upcoming Syndicate entertainer!"
+	spawn_contents = list(/obj/item/clothing/head/magician_tophat/syndicate,\
+	/obj/item/clothing/under/rank/magician/syndicate,\
+	/obj/item/clothing/suit/magician/syndicate,\
+	/obj/item/clothing/gloves/yellow/syndicate_magician)
+
+	// Syndicate gear above! D:<
+	//
+	//
+	//
+	//
 
 /obj/item/magician_tools/wand
 	name = "magician's wand"

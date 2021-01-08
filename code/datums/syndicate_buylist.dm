@@ -873,6 +873,14 @@ This is basically useless for anyone but miners.
 	desc = "A small device that may be installed in a headset to grant access to all station channels."
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
+/datum/syndicate_buylist/traitor/syndicate_magician_set
+	name = "Syndicate Magician Suit-Set"
+	cost = 6
+	item = /obj/item/storage/box/syndicate_magician
+	desc = "A fancy and quite expensive suit for the upcoming Syndicate entertainer! The included tophat features a ridiculous amount of storage space and the cape and suit have been polstered with space-linen! Cozy!"
+	job = list("Magician")
+	blockedmode = list(/datum/game_mode/revolution)
+
 /////////////////////////////////////////// Surplus-exclusive items //////////////////////////////////////////////////
 
 /datum/syndicate_buylist/surplus

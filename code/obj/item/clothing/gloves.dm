@@ -269,6 +269,9 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 		if (prob(66))
 			src.color = pick("#91d5e9","#d888d8","#73e8b6","#ff9bc6")
 
+/obj/item/clothing/gloves/latex/magician
+	name = "magician's gloves"
+
 /obj/item/clothing/gloves/crafted
 	name = "gloves"
 	icon_state = "latex"
