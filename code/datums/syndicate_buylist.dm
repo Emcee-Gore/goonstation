@@ -879,7 +879,29 @@ This is basically useless for anyone but miners.
 	item = /obj/item/storage/box/syndicate_magician
 	desc = "A fancy and quite expensive suit for the upcoming Syndicate entertainer! The included tophat features a ridiculous amount of storage space and the cape and suit have been polstered with space-linen! Cozy!"
 	job = list("Magician")
-	blockedmode = list(/datum/game_mode/revolution)
+	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
+
+// /datum/syndicate_buylist/traitor/magician_ring
+// 	name = "Wizard Federation's apprentice ring"
+// 	cost = 4
+// 	desc = "This little gizmo has been nicked from a Wizard Federation cargo-ship! Great haul - cause now we can entrust you with the magical properties this ring is holding!"
+// 	job = list("Magician")
+// 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
+// 	item = /obj/item/clothing/gloves/ring/wizard/magician_ring
+// 	#ifdef RP_MODE //This and the box might be too griefy for RP. Asked around on Discord and since wizard is disabled on RP; I thought this should also be disabled. Without a price it will not be available to be bought.
+// 	cost = 0
+// 	#endif
+
+// /datum/syndicate_buylist/traitor/magician_rings_box
+// 	name = "Wizard Federation's Apprentice Warfare-Kit"
+// 	cost = 12
+// 	item = /obj/item/storage/box/magician_rings_box
+// 	desc = "Luckily for you the Syndicate had just finished a splendid raid on a warfare ship of the Wizard Federation! Included in this purchase you will find a standard combat-gear-set featuring an offensive, defensive and utility spell-ring for upcoming wizard apprentices; <b>and</b> of course a fluffy rabbit for the worst of times on the battlefield!"
+// 	job = list("Magician")
+// 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
+// 	#ifdef RP_MODE
+// 	cost = 0
+// 	#endif
 
 /////////////////////////////////////////// Surplus-exclusive items //////////////////////////////////////////////////
 

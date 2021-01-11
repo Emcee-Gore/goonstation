@@ -20,6 +20,9 @@
 	/obj/item/toy/plush/small/kitten/wizard,\
 	/obj/item/toy/plush/small/monkey/assistant,\
 	/obj/item/toy/plush/small/bunny/mask,\
+	/obj/item/toy/plush/small/bunny/wizard,\
+	/obj/item/toy/plush/small/bunny/red,\
+	/obj/item/toy/plush/small/bunny/purple,\
 	/obj/item/toy/plush/small/penguin/cool)
 	var/list/prizes_ultra_rare = list(/obj/item/toy/plush/small/orca,\
 	/obj/item/toy/plush/small/tuba,\
@@ -179,10 +182,31 @@
 	name = "bunny plush toy"
 	icon_state = "bunny"
 
+/obj/item/toy/plush/small/bunny/wizard
+	name = "wizard bunny plush toy"
+	icon_state = "bunny_wizard"
+
+/obj/item/toy/plush/small/bunny/red
+	name = "red tophat bunny plush toy"
+	icon_state = "bunny_tophat_red"
+
+/obj/item/toy/plush/small/bunny/purple
+	name = "purple tophat bunny plush toy"
+	icon_state = "bunny_tophat_purple"
+
 /obj/item/toy/plush/small/bunny/wet
-	name = "soaking wet bunny plush toy"
-	icon_state = "bunny"
+	name = "soaking wet tophat bunny plush toy"
 	desc = "This magician's funny stage-prop has seen a lot. Poor bunny."
+	icon_state = "bunny"
+
+	New()
+		..()
+		var/magic = rand(1,2)
+		switch(magic)
+			if (1)
+				icon_state = "bunny_tophat_red"
+			if (2)
+				icon_state = "bunny_tophat_purple"
 
 	throw_impact(atom/A, datum/thrown_thing/thr)
 		var/turf/T = get_turf(A)

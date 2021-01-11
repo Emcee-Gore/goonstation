@@ -126,8 +126,12 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 					src.uses = 0
 				src.uses = min(src.uses + 1, src.max_uses)
 				C.use(1500)
-				src.icon_state = "stun"
-				src.item_state = "stun"
+				if (istype(src, /obj/item/clothing/gloves/yellow/syndicate_magician))
+					src.icon_state = "stun_m"
+					src.item_state = "stun_m"
+				else
+					src.icon_state = "stun"
+					src.item_state = "stun"
 				src.overridespecial = 1
 				C.updateicon()
 				user.update_clothing() // Required to update the worn sprite (Convair880).

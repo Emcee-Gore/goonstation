@@ -991,8 +991,12 @@
 					var/obj/item/clothing/gloves/G = master
 					G.uses = max(0, G.uses - 1)
 					if (G.uses < 1)
-						G.icon_state = "yellow"
-						G.item_state = "ygloves"
+						if (istype(G, /obj/item/clothing/gloves/yellow/syndicate_magician))
+							G.icon_state = "latex"
+							G.item_state = "lgloves"
+						else
+							G.icon_state = "yellow"
+							G.item_state = "ygloves"
 						user.update_clothing() // Was missing (Convair880).
 						user.show_text("The gloves are no longer electrically charged.", "red")
 						G.overridespecial = 0

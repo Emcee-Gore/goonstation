@@ -649,6 +649,7 @@
 	spawn_contents = list(/obj/item/storage/sparkler_box,
 	/obj/item/clothing/suit/jacket/sparkly,
 	/obj/item/dice/magic8ball,
+	/obj/item/paper/magician/flyer,
 	)
 
 /* =================== */

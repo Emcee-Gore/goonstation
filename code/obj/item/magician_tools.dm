@@ -343,10 +343,10 @@
 	material_prints = "insulative fibers and a hint of white paint"
 	icon_state = "latex"
 	item_state = "lgloves"
-	can_be_charged = 0
+	can_be_charged = 1
 
 /obj/item/storage/box/syndicate_magician
-	name = "magician's special suit-set"
+	name = "syndicate magician's special suit-set"
 	icon = 'icons/obj/items/storage.dmi'
 	icon_state = "magician"
 	inhand_image_icon = 'icons/mob/inhand/hand_storage.dmi'

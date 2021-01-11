@@ -1451,3 +1451,64 @@ exposed to overconfident outbursts on the part of individuals unqualifed to embo
 		pixel_x = rand(-8, 8)
 		pixel_y = rand(-8, 8)
 		info = "<html><body style='margin:2px'><img src='[resource("images/arts/mushroom_station.png")]'></body></html>"
+
+/obj/item/paper/magician/flyer
+	name = "Magician's fashion guide"
+	desc = "For all the lousy discount magician's unsure what a real entertainer looks like! Even the little bunny knows how to rock a mystical style!"
+	icon_state = "magician-fashion"
+	sizex = 980
+	sizey = 676
+
+	New()
+		..()
+		pixel_x = rand(-8, 8)
+		pixel_y = rand(-8, 8)
+		info = "<html><body style='margin:2px'><img src='[resource("images/arts/magician_fashion.png")]'></body></html>"
+
+/obj/item/paper/apprentice_instructions
+	name = "Wizard Federation Apprentice Instructions!"
+
+	New()
+		..()
+		src.icon_state = "paper"
+		src.desc = "Shimmering dust from a fancy pen coats this piece of paper. It is marked with "
+		src.info = {"<center><h2>Welcome Apprentice!</h2></center>
+		<hr>
+		This nifty little box you stumbled upon will be your best friend for your upcoming trial! Mind you that your plush-companion might be an even better friend than this paper-friend!
+		<br>
+		<br>
+		<u>What are your goals on this upcoming mission - you ask?</u>
+		<br>
+		We offer you a standard set of objectives to abide by; but feel free to improvise and show the <b>Wizard Federation</b> that you are worthy to use our top-tier technology!
+		<hr>
+		<br>
+		<table border = "1" cellpadding = "3" cellspacing = "3"><center><b>Chaos Guide:</b></center>
+		<tr>
+		<td><b>"Sabotage Main-Systems"</b></td>
+		<td><i>Potential targets include:</i> Engine-Room, Oxygen-Supply, Medical Storage</td>
+		</tr>
+		<tr>
+		<td><b>"Subvert the AI"</b></td>
+		<td><i>Example law:</i> <u>The Wizard Federation rules! The Captain of this NanoTrasen vessel is nothing but a silly little and stinky clown - make it known!</u></td>
+		</tr>
+		<tr>
+		<td><b>"Enforce Anarchy"</b></td>
+		<td><i>NanoTrasen will know what chaos is</i> - how brittle their little ranks of prestige truly are. Hand out '<b>All-Access</b>' to as many low-ranking crewmembers as possible!</td>
+		</tr>
+		<tr>
+		<td><b>"Remove the Clown"</b></td>
+		<td><i>One might think this task is easy</i> - but Clowns are among the most fierce and trickiest buggers to deal with. They alone cause more terror than the spookiest of Wendigos!</td>
+		</tr>
+		<tr>
+		<td><b>"Open up an opposite-petting Zoo"</b></td>
+		<td><i>How hard can it be to capture, then release the most dangerous beasts and creatures known to men</i> - surprise the unprepared NanoTrasen crew by exposing them to the most vile monsters!</td>
+		</tr>
+		<tr>
+		<td><b>"Impersonate a high-ranking crewmember"</b></td>
+		<td><i>Take on the identity of a Head of Staff</i> - then drag their reputation through the vomit-drenched floor.</td>
+		</table>
+		<br>
+		<br>
+		<align="right"><small>-The Wizard Federation</small></align>"}
+
+//Emcee-Gore rocking the pages!

@@ -6,6 +6,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves/ring/wizard)
 	icon_state = "ring"
 	item_state = "ring"
 	burn_possible = 0
+	contraband = 6 //Wizard robe is contraband 4. Since I will be adding this item to the Magician's purchasable traitor items; I think it is just fair to include some contraband level here.
 	var/ability_path = null			//The ability that this ring is linked to.	//When it's null it's either soulguard or the parent. I'm lazy.
 	magical = 1
 
@@ -67,6 +68,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves/ring/wizard)
 				show_message = 1
 			if (show_message)
 				boutput(user, "<span class='alert'><b>Removing [src] removes its powers with it!</b></span>")
+
 	staff
 		name = "ring of cthulhu"
 		desc = "Looking at this ring makes your head hurt."
@@ -253,7 +255,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves/ring/wizard)
 			else
 				var/list/L = concrete_typesof(/obj/item/clothing/gloves/ring/wizard) - /obj/item/clothing/gloves/ring/wizard/rnd
 				ring = pick(L)
-			
+
 			src.name = initial(ring.name)
 			src.desc = initial(ring.desc)
 			src.icon_state = initial(ring.icon_state)
@@ -270,6 +272,90 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves/ring/wizard)
 			possible_rings = list("knock", "empower", "phase_shift", "clairvoyance", "animate_dead", "teleport", "pandemonium", "sticks_to_snakes", "soulguard")
 		less_deadly
 			possible_rings = list("fireball", "magic_missile", "knock", "blind", "empower", "phase_shift", "clairvoyance", "ice_burst", "prismatic_spray", "animate_dead", "teleport", "blink", "rathens_secret", "spell_shield", "warp", "forcewall", "pandemonium", "bull_charge", "sticks_to_snakes", "doppelganger", "soulguard")
+
+	// rnd_magician //Feel free to shout at me for making this here instead of using the rnd child item from above. But I didn't want to touch the lists somebody else already created and I wanted in case of the box to guarantee to spawn no duplicates.
+	// 	var/list/possible_rings = null	//instead of picking from all spell types, pick from this list of spells to make the ring. should be the lowest level path name of the ring
+
+	// 	New()
+	// 		..()
+
+	// 		var/obj/item/clothing/gloves/ring/wizard/ring
+	// 		if (possible_rings)
+	// 			var/ring_type = pick(possible_rings)
+	// 			// if (ring_type == "soulguard")
+	// 			// 	/obj/item/clothing/gloves/ring/wizard/soulguard
+	// 			// 	return
+	// 			// else
+	// 			ring = text2path("/obj/item/clothing/gloves/ring/wizard/[ring_type]")
+	// 		else
+	// 			var/list/L = concrete_typesof(/obj/item/clothing/gloves/ring/wizard) - /obj/item/clothing/gloves/ring/wizard/rnd
+	// 			ring = pick(L)
+
+	// 		src.name = initial(ring.name)
+	// 		src.desc = initial(ring.desc)
+	// 		src.icon_state = initial(ring.icon_state)
+	// 		src.ability_path = initial(ring.ability_path)
+
+	// 	dmg
+	// 		possible_rings = list("fireball", "magic_missile", "blind", "ice_burst", "prismatic_spray", "cluwne", "shocking_touch", "rathens_secret", "golem", "polymorph")
+	// 	def
+	// 		possible_rings = list("phase_shift", "teleport", "blink", "spell_shield", "warp", "forcewall", "doppelganger")
+	// 	util
+	// 		possible_rings = list("knock", "empower", "clairvoyance", "animate_dead", "pandemonium", "sticks_to_snakes")
+
+	// 	all
+	//Add backslash 		possible_rings = list("fireball", "magic_missile", "blind", "ice_burst", "prismatic_spray", "cluwne", "shocking_touch", "rathens_secret", "golem", "polymorph",
+	//Add backslash 		"phase_shift", "teleport", "blink", "spell_shield", "warp", "forcewall", "doppelganger",
+	// 		"knock", "empower", "clairvoyance", "animate_dead", "pandemonium", "sticks_to_snakes")
+
+//25 spells total with soulguard and staff! Soulguard and staff has been moved to the magician_rings_box and the magician_ring below.
+//Do not spawn in /obj/item/clothing/gloves/ring/wiard/rnd_magician - dmg - def - util or all
+//For admin shenanigans please use the storage box magician_rings_box or the singular magician_ring below. This will not spawn in the empty "wizard ring" and will make soulguard and staff rings work.
+
+// /obj/item/storage/box/magician_rings_box
+// 	name = "Wizard Federation's Apprentice Warfare-Kit"
+// 	icon = 'icons/obj/items/storage.dmi'
+// 	icon_state = "wizard_rings"
+// 	inhand_image_icon = 'icons/mob/inhand/hand_storage.dmi'
+// 	item_state = "box"
+// 	desc = "The label on this box reads 'Wizard Federation Apprentice Warfare-Kit - <b>'<i>for ages of 13 up to 107</i>'</b>."
+// 	make_my_stuff()
+// 		..()
+// 		var/dmg = rand(1,11)
+// 		switch (dmg)
+// 			if (1)
+// 				new /obj/item/clothing/gloves/ring/wizard/staff(src)
+// 			else
+// 				new /obj/item/clothing/gloves/ring/wizard/rnd_magician/dmg(src)
+// 		var/def = rand(1,8)
+// 		switch (def)
+// 			if (1)
+// 				new /obj/item/clothing/gloves/ring/wizard/soulguard(src)
+// 			else
+// 				new	/obj/item/clothing/gloves/ring/wizard/rnd_magician/def(src)
+// 		new /obj/item/clothing/gloves/ring/wizard/rnd_magician/util(src)
+// 		new /obj/item/paper/apprentice_instructions(src)
+// 		var/plush = rand(1,2)
+// 		switch(plush)
+// 			if (1)
+// 				new /obj/item/toy/plush/small/bunny/wizard(src)
+// 			if (2)
+// 				new /obj/item/toy/plush/small/kitten/wizard(src)
+
+// /obj/item/clothing/gloves/ring/wizard/magician_ring
+// 	New()
+// 		..()
+// 		var/ring = rand(1,25)
+// 		switch (ring)
+// 			if (1)
+// 				new /obj/item/clothing/gloves/ring/wizard/staff(get_turf(src))
+// 				src.disposing()
+// 			if (2)
+// 				new /obj/item/clothing/gloves/ring/wizard/soulguard(get_turf(src))
+// 				src.disposing()
+// 			else
+// 				new	/obj/item/clothing/gloves/ring/wizard/rnd_magician/all(get_turf(src))
+// 				src.disposing()
 
 /client/proc/create_all_wizard_rings()
 	set name = "Create All Wizard Rings"
