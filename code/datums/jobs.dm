@@ -1005,6 +1005,16 @@
 		src.access = get_access("Magician")
 		return
 
+	special_setup(var/mob/living/carbon/human/M)
+		..()
+		if (!M)
+			return
+		M.traitHolder.addTrait("training_magician")
+		if (prob(30))
+			M.bioHolder.AddEffect("accent_comic", magical=1)
+		if (prob(15))
+			M.see_invisible = 25 //Might be a bit high; unsure - wanted the Magician to get some mystical vibes. Trying to get a custom sensible trait created for the first time. Please add critique.
+
 // AI and Cyborgs
 
 /datum/job/civilian/AI

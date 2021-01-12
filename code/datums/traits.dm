@@ -611,6 +611,12 @@
 	onLife(var/mob/owner) //Just to be safe.
 		return
 
+/obj/trait/job/magician
+	name = "Mystical Aura"
+	cleanName = "Mystical Aura"
+	desc = "A strong bond exists between the unknown and the individual in question."
+	id = "training_magician"
+
 /obj/trait/job/chaplain
 	name = "Chaplain Training"
 	cleanName = "Chaplain Training"

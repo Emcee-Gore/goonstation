@@ -370,11 +370,11 @@
 	icon_state = "magician_wand"
 	item_state = "magician_wand"
 	flags = FPRINT | TABLEPASS| CONDUCT | ONBELT
-	force = 4.0
+	force = 3.0
 	stamina_damage = 10
 	stamina_cost = 4
 	stamina_crit_chance = 5
-	hitsound = 'sound/impact_sounds/Slap.ogg'
+	hitsound = "punch"
 	w_class = 3.0
 	throwforce = 3.0
 	throw_range = 15
@@ -383,9 +383,130 @@
 	//m_amt = 50
 	//g_amt = 20
 	//mats = list("CRY-1", "CON-2")
+	//var/heal_amt = 10
+	var/Spell = null
 
 	New()
 		..()
+		START_TRACKING
 		src.setItemSpecial(/datum/item_special/wandspark)
+
+	disposing()
+		..()
+		STOP_TRACKING
+
+			// M.remove_stamina(10)
+			// if (ishuman(user))
+			// 	var/mob/living/carbon/human/U = user
+			// 	user.remove_stamina(4)
+
+
+	proc/vomitcast(mob/M as mob, var/mob/user, var/vomit_amount=0) //var/exclude_center=1
+		var/mob/living/affected_mob = M
+		if( istype(affected_mob) )
+			if(vomit_amount < 1) //Set maximum vomit around.
+				var/Vomit_Spot = pick(alldirs)
+				var/turf/T = get_step(affected_mob, Vomit_Spot)
+				if(isfloor(T))
+					if (prob(20))
+						make_cleanable( /obj/decal/cleanable/greenpuke,T)
+					else
+						make_cleanable( /obj/decal/cleanable/vomit,T)
+					vomit_amount = 1
+					playsound(affected_mob.loc, "sound/misc/meat_plop.ogg", 25, 0)
+					playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 25, 1)
+					if (M == user)
+						M.visible_message("<span class='notice'>You tap yourself violently with the [src] and begin to feel really ill! Urgh!</span>")
+					else
+						M.visible_message("<span class='notice'>[user] taps [M] harshly with [src]. The Magician murmurs something and suddenly [M] begins to spew vomit everywhere!</span>")
+				else //Fail condition if you are just surrounded by walls or the mob you targeted is!
+					if (M == user)
+						boutput(M, "<span class='notice'>Not even magical enough to amaze yourself, huh?!</span>")
+					else
+						M.visible_message("<span class='alert'>[user] hits [M] with [src] but nothing happens! Silly magician!?</span>")
+					Spell = "fail"
+					return
+			var/nutrition = rand(3,5)
+			affected_mob.nutrition -= nutrition
+			Spell = "success"
+			return
+
+
+	attack(mob/M as mob, mob/user as mob)
+		var/magician = 0
+		var/mob/H = M
+
+		if (user.bioHolder && user.bioHolder.HasEffect("clumsy") && prob(40)) //Honk!
+			user.visible_message("<span class='alert'><b>[user]</b> fumbles and drops the fizzling [src] on \his foot.</span>")
+			playsound(src.loc, "punch", 25, 1, -1)
+			playsound(src.loc, 'sound/effects/sparks5.ogg', 25, 1, -1)
+			random_burn_damage(user, 5)
+			user.changeStatus("stunned", 3 SECONDS)
+			user.emote("scream")
+			user.drop_item(src)
+			JOB_XP(user, "Clown", 1)
+			return
+
+		if (user.traitHolder && user.traitHolder.hasTrait("training_magician"))
+			magician = 1
+
+		if (!magician && !isdead(M)) //None magician attacking somebody with the wand! Weapon-time!
+			if (M == user)
+				boutput(M, "<span class='alert'>Stop hitting yourself with [src]!</span>")
+			else
+				M.visible_message("<span class='alert'>[user] slaps [M] with [src] like it is an amazing sword! Silly!</span>")
+				boutput(M, "<span class='alert'>[user] hits you with the blunt force of [src]! Oof!</span>")
+			playsound(src.loc, "punch", 25, 1, -1)
+			user.remove_stamina(4)
+			M.remove_stamina(10)
+			random_brute_damage(M, 3)
+			return
+
+		else if (isdead(M)) //Corpse beatings!
+			M.visible_message("<span class='alert'><B>[user] pokes [M]'s lifeless corpse with [src].</B></span>")
+			if (narrator_mode)
+				playsound(src.loc, 'sound/vox/hit.ogg', 25, 1, -1)
+			else
+				playsound(src.loc, "punch", 25, 1, -1)
+				user.remove_stamina(4)
+				random_brute_damage(M, 3)
+			return
+
+		else if (!isdead(M) && magician == 1) //Spell cast! * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+			if ((ishuman(H)))
+				if (prob(30)) //Add switch and different spells here.
+					vomitcast(M, user) //! ! ! VOMITCAST ! ! !
+					logTheThing("combat", user, M, "cast vomit magic on [constructTarget(M,"combat")]")
+
+					if (Spell == "success")	//Spell cast and success!
+						playsound(src.loc, 'sound/impact_sounds/Slap.ogg', 40, 1)
+						var/turf = M.loc
+						magicspark(turf,0, power=2, exclude_center = 0)
+						user.remove_stamina(10)
+						M.remove_stamina(12)
+						random_brute_damage(M, 1)
+						random_burn_damage(M, rand(1,3))
+						Spell = null
+
+					if (Spell == "fail")	//Spell cast but fail condition within proc activated!
+						playsound(src.loc, "punch", 25, 1, -1)
+						user.remove_stamina(4)
+						M.remove_stamina(10)
+						random_brute_damage(M, 3)
+						Spell = null
+
+				else	//Spell not cast! General fail!
+					if (M == user)
+						boutput(M, "<span class='notice'>Not even magical enough to amaze yourself, huh?</span>")
+					else
+						M.visible_message("<span class='alert'>[user] hits [M] with [src] but nothing happens! Silly magician!</span>")
+						boutput(M, "<span class='alert'>The magician [user] tries his best - but is unable to display his skills! What a shame! Ouch!</span>")
+					if (narrator_mode)
+						playsound(src.loc, 'sound/vox/hit.ogg', 25, 1, -1)
+					else
+						playsound(src.loc, "punch", 25, 1, -1)
+						user.remove_stamina(4)
+						M.remove_stamina(10)
+						random_brute_damage(M, 3)
 
 // Wanna add additional features; quite like - clicking on a reagent-container transfers all reagents or into the users body.

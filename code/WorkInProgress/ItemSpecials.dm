@@ -1292,6 +1292,19 @@
 				var/direction = get_dir_pixel(user, target, params)
 				var/turf/turf = get_step(master, direction)
 
+				var/list/attacked = list()
+
+				var/hit = 0
+
+				if (user.traitHolder && !user.traitHolder.hasTrait("training_magician"))
+					for(var/turf/T in list(turf))
+						for(var/atom/A in T)
+							if(A in attacked) continue
+							if(isTarget(A))
+								A.attackby(master, user, params, 1)
+								attacked += A
+								hit = 1
+
 
 				var/obj/itemspecialeffect/conc/C = unpool(/obj/itemspecialeffect/conc)
 				C.setup(turf)
@@ -1305,8 +1318,25 @@
 							boutput(user, "<span class='alert'><b>You try to channel magic sparks onto the plant-life, but [O] is too dense for it to take!</b></span>")
 							return
 
-				magicspark(turf,0, power=2, exclude_center = 0)
-				afterUse(user)
+				if (user.traitHolder && user.traitHolder.hasTrait("training_magician"))
+					magicspark(turf,0, power=2, exclude_center = 0)
+					afterUse(user)
+					return
+				else
+					for (var/mob/melee_target in turf.contents)
+						if (istype(melee_target, /mob/living))
+							if (narrator_mode)
+								playsound(master.loc, 'sound/vox/hit.ogg', 25, 1, -1)
+							else
+								playsound(master.loc, "punch", 25, 1, -1)
+						else
+							user.remove_stamina(4)
+							random_brute_damage(melee_target, 3)
+							melee_target.visible_message("<span class='alert'>[user] slaps [melee_target] with [src] like it is an amazing sword! Silly!</span>")
+							boutput(melee_target, "<span class='alert'>[user] hits you with the blunt force of [src]! Oof!</span>")
+							afterUse(user)
+				if (!hit)
+					playsound(master.loc, 'sound/effects/swoosh.ogg', 25, 1, -1)
 			return
 
 ///////////////////////////////////
