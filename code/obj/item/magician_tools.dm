@@ -439,7 +439,7 @@
 		if (user.bioHolder && user.bioHolder.HasEffect("clumsy") && prob(40)) //Honk!
 			user.visible_message("<span class='alert'><b>[user]</b> fumbles and drops the fizzling [src] on \his foot.</span>")
 			playsound(src.loc, "punch", 25, 1, -1)
-			playsound(src.loc, 'sound/effects/sparks5.ogg', 25, 1, -1)
+			playsound(src.loc, 'sound/effects/sparks5.ogg', 35, 1, -1)
 			random_burn_damage(user, 5)
 			user.changeStatus("stunned", 3 SECONDS)
 			user.emote("scream")

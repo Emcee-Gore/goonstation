@@ -1266,6 +1266,8 @@
 				afterUse(user)
 			return
 
+
+
 	wandspark
 		cooldown = 0.6
 		moveDelay = 5
@@ -1273,10 +1275,21 @@
 
 		damageMult = 0.8
 
-
 		image = "magicspark"
 		name = "Frizzle"
 		desc = "Cast a tiny amount of the energy of this wand's leaking battery onto nearby test-subjects."
+
+
+				// if (user.traitHolder && user.traitHolder.hasTrait("training_magician"))
+				// 	image = "magicspark"
+				// 	name = "Frizzle"
+				// 	desc = "Cast a tiny amount of the energy of this wand's leaking battery onto nearby test-subjects."
+				// else
+				// 	image = "conc_fast"
+				// 	name = "Amazing Slap"
+				// 	desc = "This is a fancy stick! Hit something with it! Kablam!"
+
+
 
 		onAdd()
 			if(master)
@@ -1306,8 +1319,6 @@
 								hit = 1
 
 
-				var/obj/itemspecialeffect/conc/C = unpool(/obj/itemspecialeffect/conc)
-				C.setup(turf)
 				for (var/obj/O in turf.contents)
 					if (istype(O, /obj/blob))
 						boutput(user, "<span class='alert'><b>You try to affect the Blob by magic sparks, but [O] is too wet for it to take!</b></span>")
@@ -1323,6 +1334,8 @@
 					afterUse(user)
 					return
 				else
+					var/obj/itemspecialeffect/conc/C = unpool(/obj/itemspecialeffect/conc)
+					C.setup(turf)
 					for (var/mob/melee_target in turf.contents)
 						if (istype(melee_target, /mob/living))
 							if (narrator_mode)
