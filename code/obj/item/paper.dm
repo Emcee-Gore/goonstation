@@ -1472,7 +1472,7 @@ exposed to overconfident outbursts on the part of individuals unqualifed to embo
 		..()
 		pixel_x = rand(-8, 8)
 		pixel_y = rand(-8, 8)
-		info = "<html><body style='margin:2px'><img src='[resource("images/arts/magician_fashion.png")]'></body></html>"
+		info = "<html><body style='margin:2px'><img src='[resource("images/pocket_guides/botanyguide.png")]'></body></html>"
 
 /obj/item/paper/magician/flyer
 	name = "Magician's fashion guide"
@@ -1480,6 +1480,7 @@ exposed to overconfident outbursts on the part of individuals unqualifed to embo
 	icon_state = "magician-fashion"
 	sizex = 980
 	sizey = 676
+	info = "<html><body style='margin:2px'><img src='[resource("images/arts/magician_fashion.png")]'></body></html>"
 
 /obj/item/paper/apprentice_instructions
 	name = "Wizard Federation Apprentice Instructions!"
@@ -1528,4 +1529,3 @@ exposed to overconfident outbursts on the part of individuals unqualifed to embo
 		<align="right"><small>-The Wizard Federation</small></align>"}
 
 //Emcee-Gore rocking the pages!
-		info = "<html><body style='margin:2px'><img src='[resource("images/pocket_guides/botanyguide.png")]'></body></html>"
