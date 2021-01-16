@@ -10,7 +10,7 @@
 	var/list/req_access = list()
 
 	var/killswitch = 0
-	var/killswitch_time = 60
+	var/killswitch_at = 0
 	var/weapon_lock = 0
 	var/weaponlock_time = 120
 	var/obj/item/card/id/botcard //An ID card that the robot "holds" invisibly
@@ -264,8 +264,7 @@
 					f.show_message(flockrendered, 2)
 
 	var/list/listening = hearers(1, src)
-	listening -= src
-	listening += src
+	listening |= src
 
 	var/list/heard = list()
 	for (var/mob/M in listening)

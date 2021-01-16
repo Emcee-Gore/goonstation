@@ -281,6 +281,15 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 				return null
 		return R
 
+	/*
+	 * returns a list of objects matching type in an area
+	 */
+	proc/get_type(var/type)
+		. = list()
+		for (var/A in src)
+			if(istype(A, type))
+				. += A
+
 	proc/build_sims_score()
 		if (name == "Space" || src.name == "Ocean" || area_space_nopower(src) || skip_sims)
 			return
@@ -1113,6 +1122,10 @@ ABSTRACT_TYPE(/area/prefab)
 /area/prefab/drug_den/party
 	name ="Drug Den"
 	icon_state = "purple"
+
+/area/prefab/von_ricken
+	name ="Von Ricken"
+	icon_state = "blue"
 
 // Sealab trench areas //
 
@@ -2108,6 +2121,11 @@ ABSTRACT_TYPE(/area/station/crew_quarters/radio)
 	icon_state = "yellow"
 	sound_environment = 0
 
+/area/station/crew_quarters/supplylobby
+	name = "Supply Lobby"
+	icon_state = "yellow"
+	sound_environment = 0
+
 /area/station/crew_quarters/garden
 	name = "Public Garden"
 	icon_state = "park"
@@ -2745,6 +2763,11 @@ ABSTRACT_TYPE(/area/station/chapel)
 	icon_state = "chapeloffice"
 	sound_environment = 11
 
+/area/station/chapel/funeral_parlor
+	name = "Funeral Parlor"
+	icon_state = "funeralparlor"
+	sound_environment = 7
+
 /area/station/storage
 	name = "Storage Area"
 	icon_state = "storage"
@@ -2971,6 +2994,10 @@ ABSTRACT_TYPE(/area/station/catwalk)
 /area/research_outpost/toxins
 		name = "Research Outpost Toxins"
 		icon_state = "green"
+
+/area/research_outpost/pathology
+		name = "Research Outpost Pathology"
+		icon_state = "pink"
 
 // end station areas //
 
