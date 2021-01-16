@@ -861,8 +861,8 @@ var/global/noir = 0
 				alert("You need to be at least a Secondary Adminstrator to monkeyize players.")
 
 		if ("forcespeech")
-			if (src.level >= LEVEL_PA)
-				var/mob/M = locate(href_list["target"])
+			var/mob/M = locate(href_list["target"])
+			if (src.level >= LEVEL_PA || isnull(M.client) && src.level >= LEVEL_SA)
 				if (ismob(M))
 					var/speech = input("What will [M] say?", "Force speech", "")
 					if(!speech)
@@ -871,7 +871,8 @@ var/global/noir = 0
 					speech = copytext(sanitize(speech), 1, MAX_MESSAGE_LEN)
 					logTheThing("admin", usr, M, "forced [constructTarget(M,"admin")] to say: [speech]")
 					logTheThing("diary", usr, M, "forced [constructTarget(M,"diary")] to say: [speech]", "admin")
-					message_admins("<span class='internal'>[key_name(usr)] forced [key_name(M)] to say: [speech]</span>")
+					if(M.client)
+						message_admins("<span class='internal'>[key_name(usr)] forced [key_name(M)] to say: [speech]</span>")
 			else
 				alert("You need to be at least a Primary Administrator to force players to say things.")
 
@@ -2032,19 +2033,19 @@ var/global/noir = 0
 				alert("Cannot make this mob a traitor")
 
 		if ("create_object")
-			if (src.level >= LEVEL_PA)
+			if (src.level >= LEVEL_SA)
 				create_object(usr)
 			else
 				alert("You need to be at least a Primary Adminstrator to create objects.")
 
 		if ("create_turf")
-			if (src.level >= LEVEL_PA)
+			if (src.level >= LEVEL_SA)
 				create_turf(usr)
 			else
 				alert("You need to be at least a Primary Adminstrator to create turfs.")
 
 		if ("create_mob")
-			if (src.level >= LEVEL_PA) // Moved from SG to PA. They can do this through build mode anyway (Convair880).
+			if (src.level >= LEVEL_SA)
 				create_mob(usr)
 			else
 				alert("You need to be at least a Primary Administrator to create mobs.")
@@ -2128,7 +2129,7 @@ var/global/noir = 0
 				alert("You need to be at least a Primary Adminstrator to promote or demote.")
 
 		if ("object_list")
-			if (src.level >= LEVEL_PA)
+			if (src.level >= LEVEL_SA)
 				if (config.allow_admin_spawning && (src.state == 2 || src.level >= LEVEL_PA))
 					var/atom/loc = usr.loc
 
@@ -4041,7 +4042,7 @@ var/global/noir = 0
 			dat += "<b>Force players to use random appearances:</b> <A href='?src=\ref[src];action=secretsfun;type=forcerandomlooks'>[force_random_looks ? "Yes" : "No"]</a><br>"
 			//dat += "<A href='?src=\ref[src];action=secretsfun;type=forcerandomnames'>Politely suggest all players use random names</a>" // lol
 
-	if (src.level >= LEVEL_PA)
+	if (src.level >= LEVEL_SA)
 		dat += "<hr>"
 		dat += "<A href='?src=\ref[src];action=create_object'>Create Object</A><br>"
 		dat += "<A href='?src=\ref[src];action=create_turf'>Create Turf</A><br>"
@@ -4640,7 +4641,9 @@ var/global/noir = 0
 	if(!object)
 		return
 
-	if (usr.client.holder.level >= LEVEL_PA)
+	var/client/client = usr.client
+
+	if (client.holder.level >= LEVEL_PA)
 		var/chosen = get_one_match(object)
 
 		if (chosen)
@@ -4650,11 +4653,11 @@ var/global/noir = 0
 					location.ReplaceWith(chosen, handle_air = 0)
 			else
 				var/atom/movable/A
-				if (usr.client.holder.spawn_in_loc)
+				if (client.holder.spawn_in_loc)
 					A = new chosen(usr.loc)
 				else
 					A = new chosen(get_turf(usr))
-				if (usr.client.flourish)
+				if (client.flourish)
 					spawn_animation1(A)
 			logTheThing("admin", usr, null, "spawned [chosen] at ([showCoords(usr.x, usr.y, usr.z)])")
 			logTheThing("diary", usr, null, "spawned [chosen] at ([showCoords(usr.x, usr.y, usr.z, 1)])", "admin")
