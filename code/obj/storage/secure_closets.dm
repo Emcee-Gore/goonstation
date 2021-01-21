@@ -651,6 +651,7 @@
 	/obj/item/clothing/suit/jacket/sparkly,
 	/obj/item/dice/magic8ball,
 	/obj/item/paper/magician/flyer,
+	/obj/item/device/light/candle/mystical,
 	)
 
 /* =================== */

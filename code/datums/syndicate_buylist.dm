@@ -889,6 +889,15 @@ This is basically useless for anyone but miners.
 	job = list("Magician")
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
+/datum/syndicate_buylist/traitor/trick_sword
+	name = "Trick Sword"
+	item = /obj/item/katana/trick_sword
+	cost = 7
+	desc = "A classic stage-prop for the aspiring Syndicate entertainment operator! Simply gulp the sword down by <b>HELPING</b> yourself to swallow it! When in need of quick retrieval just make use of the wonderful <i>burp-propulsion</i> technology!"
+	not_in_crates = 1
+	job = list("Magician")
+	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
+
 // /datum/syndicate_buylist/traitor/magician_ring
 // 	name = "Wizard Federation's apprentice ring"
 // 	cost = 4

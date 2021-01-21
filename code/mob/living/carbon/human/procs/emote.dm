@@ -1638,6 +1638,24 @@
 						src.chest_item_dump_reagents_on_flip()
 
 			if ("burp")
+				var/mob/living/carbon/human/H = src
+				if (H.find_type_in_hand(/obj/item/katana/trick_sword, "right") || H.find_type_in_hand(/obj/item/katana/trick_sword, "left"))
+				else
+					if ((locate(/obj/item/katana/trick_sword) in src.contents) != null) // && src.traitHolder.hasTrait("training_magician") Since people without the trait can suicide swallow it! Bug-testing now!
+						if (!muzzled)
+							var/obj/item/katana/trick_sword/T = (locate(/obj/item/katana/trick_sword) in src.contents)
+							var/drophand = (src.hand == 0 ? slot_r_hand : slot_l_hand)
+							drop_item()
+							T.set_loc(src)
+							equip_if_possible(T, drophand)
+							src.visible_message("<span class='alert'><B>[src] barfs out a pointy trick sword!</B></span>")
+							playsound(src.loc, 'sound/items/blade_pull.ogg', 60, 1)
+						else
+							boutput(src, "<span class='alert'>You should not try to force a sword out of your stomach while being muzzled! Oof! That hurt!</span>")
+							//Reasoning: A muzzle is usually strapped and not easy to just move around; thus damage will ensue.
+							//Other masks will likely move out of the way when a fucking sharp-ass sword is trying to remove itself from your oh-so easily damaged insides.
+							if (!isdead(H))
+								take_bleeding_damage(H, H, 27, DAMAGE_STAB) //I want a magician with a muzzle to suffer! Wonder how long it takes until somebody figures this out? Hello person reading this! :)
 				if (src.emote_check(voluntary))
 					if ((src.charges >= 1) && (!muzzled))
 						for (var/mob/O in viewers(src, null))
